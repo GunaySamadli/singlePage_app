@@ -1,17 +1,13 @@
 import { ActionTypes } from "../contants/actionTypes";
 
-const initialState = {
-  users: [],
-  user: null,
-};
+const initialState = [];
 
 export const userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ActionTypes.CREATE_USER:
-      return { ...state, users: payload };
+      return [ ...state,  payload ];
     case ActionTypes.GET_USERS:
-      return { ...state, users: payload };
-
+      return payload;
     default:
       return state;
   }

@@ -1,9 +1,9 @@
 import Table from "./components/Table";
-
+import './index.css'
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <Table />
     </div>
   );

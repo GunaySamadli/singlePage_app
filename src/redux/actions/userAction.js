@@ -15,17 +15,17 @@ export const getAllUsers = () => async (dispatch) => {
 };
 
 
-// export const createUser = (name, surname, balance, genderId, cart, date) => async (dispatch) => {
-//     try {
-//         const response = await userService.createNewUser({ name, surname, balance, genderId, cart, date })
+export const createUser = (user) => async (dispatch) => {
+  try {
+    const response = await userService.createNewUser(user)
 
-//         dispatch({
-//             type:CREATE_USER,
-//             payload:response.data
-//         });
+    dispatch({
+      type: ActionTypes.CREATE_USER,
+      payload: response.data
+    });
 
-//         return Promise.resolve(response.data);
-//     }catch (err) {
-//         return Promise.reject(err);
-//     }
-// }
+    return Promise.resolve(response.data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};

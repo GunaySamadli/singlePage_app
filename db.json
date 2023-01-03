@@ -1,23 +1,37 @@
 {
-    "users": [
-      {
-        "id": "766efe0d-e3b4-452f-8063-77dcead4f073",
-        "name": "Vasif",
-        "surname": "",
-        "balance": 20,
-        "date": "2022-12-22T09:33:10.589Z",
-        "genderId": 1,
-        "cart": "false"
-      }
-    ],
-    "gender": [
-      {
-        "id": 1,
-        "name": "Man"
-      },
-      {
-        "id": 2,
-        "name": "Female"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": 1,
+      "name": "Vasif",
+      "surname": "Abdullayev",
+      "balance": 20,
+      "date": "2022-12-22T09:33:10.589Z",
+      "genderId": 1,
+      "cart": "false"
+    },
+    {
+      "id": 923,
+      "name": "Sefa",
+      "surname": "",
+      "balance": 0,
+      "date": "2023-01-03T19:04:49.114Z"
+    },
+    {
+      "id": 624,
+      "name": "Gunay",
+      "surname": "",
+      "balance": 0,
+      "date": "2023-01-03T19:09:15.595Z"
+    }
+  ],
+  "gender": [
+    {
+      "id": 1,
+      "name": "Man"
+    },
+    {
+      "id": 2,
+      "name": "Female"
+    }
+  ]
+}

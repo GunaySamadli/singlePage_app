@@ -1,5 +1,26 @@
+import axios from "axios";
 import { userService } from "../../Apis/Services/service";
 import { ActionTypes } from "../contants/actionTypes";
+
+export const searchItem = (text) => (dispatch) => {
+  dispatch({
+    type: ActionTypes.SEARCH_USER,
+    payload: text
+  })
+};
+
+
+export const getAllUsersByName = text => async dispatch => {
+  await axios
+    .get(`http://localhost:3005/users?name=${text}`)
+    .then(response =>
+      dispatch({
+        type: ActionTypes.GET_USERS,
+        payload: response.data
+      })
+    )
+    .catch(err => console.log(err));
+};
 
 export const getAllUsers = () => async (dispatch) => {
   try {

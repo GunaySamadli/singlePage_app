@@ -8,6 +8,7 @@ export class HttpClient {
         this.baseUrl = url
     }
 
+
     async get(endpoint) {
         return await axios.get(`${this.baseUrl}/${endpoint}`);
     }
@@ -17,7 +18,7 @@ export class HttpClient {
     }
 
     async put(endpoint, id, body) {
-        return await axios.put(`${this.baseUrl}/${endpoint}/${id}`,body);
+        return await axios.put(`${this.baseUrl}/${endpoint}/${id}`, body);
     }
 
     async patch(endpoint, body, id) {

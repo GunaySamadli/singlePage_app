@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllUsers, deleteUser } from '../../redux/actions/userAction';
+import { getAllUsers, deleteUser, searchItem, getAllUsersByName } from '../../redux/actions/userAction';
 import UserCreate from '../UserCreate';
 import User from './User';
 import Table from "@mui/material/Table";
@@ -37,17 +37,30 @@ const UserTable = () => {
 
 
     const users = useSelector(state => state.allUsers.users);
+    const text = useSelector(state => state.allUsers.searchItem);
 
     const handleDelete = (id) => {
         dispatch(deleteUser(id))
     }
 
+    const searchCange = (e) => {
+        dispatch(searchItem(e.target.value))
+        dispatch(getAllUsers())
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(getAllUsersByName(text))
+    };
 
     return (
         <>
             <div className='body_header'>
                 <div className='search_section'>
-                    <input type="text" name="search" placeholder='Search' />
+                    <form onSubmit={handleSubmit}>
+                        <input onChange={searchCange} type="text" name="search" placeholder='Enter Search Name' />
+                        <button type='submit'>Search</button>
+                    </form>
                 </div>
                 <button className="header-btn" onClick={() => setModal(true)} >Create</button>
             </div>

@@ -2,13 +2,14 @@ import { ActionTypes } from "../contants/actionTypes";
 
 const initialState = {
   users: [],
-  loading: false
+  loading: false,
+  searchItem: ""
 };
 
 export const userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ActionTypes.GET_USERS:
-      return { users: payload }
+      return { ...state, users: payload }
     case ActionTypes.CREATE_USER:
       return {
         ...state, users: [...state.users, payload]
@@ -27,6 +28,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state, users: filteredUser
       }
+    case ActionTypes.SEARCH_USER:
+      return { ...state, searchItem: payload }
     default:
       return state;
   }

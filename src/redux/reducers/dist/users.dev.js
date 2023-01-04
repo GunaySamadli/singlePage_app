@@ -23,7 +23,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var initialState = {
   users: [],
-  loading: false
+  loading: false,
+  searchItem: ""
 };
 
 var userReducer = function userReducer() {
@@ -35,9 +36,9 @@ var userReducer = function userReducer() {
 
   switch (type) {
     case _actionTypes.ActionTypes.GET_USERS:
-      return {
+      return _objectSpread({}, state, {
         users: payload
-      };
+      });
 
     case _actionTypes.ActionTypes.CREATE_USER:
       return _objectSpread({}, state, {
@@ -60,6 +61,11 @@ var userReducer = function userReducer() {
       });
       return _objectSpread({}, state, {
         users: filteredUser
+      });
+
+    case _actionTypes.ActionTypes.SEARCH_USER:
+      return _objectSpread({}, state, {
+        searchItem: payload
       });
 
     default:

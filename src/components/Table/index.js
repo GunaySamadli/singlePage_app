@@ -23,7 +23,7 @@ const Table = () => {
                 <div className='search_section'>
                     <input type="text" name="search" placeholder='Search' />
                 </div>
-                <button className="header-btn" onClick={() => setModal(true)} >Create</button>
+                <button className="header-btn"  onClick={() => setModal(true)} >Create</button>
             </div>
             <div className="task-container">
             </div>

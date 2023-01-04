@@ -1,27 +1,13 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Vasif",
-      "surname": "Abdullayev",
-      "balance": 20,
-      "date": "2022-12-22T09:33:10.589Z",
-      "genderId": 1,
-      "cart": "false"
-    },
-    {
-      "id": 923,
-      "name": "Sefa",
-      "surname": "",
-      "balance": 0,
-      "date": "2023-01-03T19:04:49.114Z"
-    },
-    {
-      "id": 624,
+      "id": "63b8be33",
       "name": "Gunay",
-      "surname": "",
-      "balance": 0,
-      "date": "2023-01-03T19:09:15.595Z"
+      "surname": "Semedli",
+      "balance": "34",
+      "date": "2023-01-04T07:41:25.740Z",
+      "cart": "34w",
+      "genderId": 2
     }
   ],
   "gender": [

@@ -59,11 +59,13 @@ export default function User() {
                 </StyledTableCell>
                 <StyledTableCell align="right">{user.name}</StyledTableCell>
                 <StyledTableCell align="right">{user.surname}</StyledTableCell>
+                <StyledTableCell align="right">{user.genderId === 2 ? "Female" : "Male"}</StyledTableCell>
                 <StyledTableCell align="right">{user.balance}</StyledTableCell>
                 <StyledTableCell align="right">
-                  <input type="checkbox" checked={user.cart} />
+                  <label class="form-controlss">
+                    <input disabled type="checkbox" name="checkbox-checked" checked={user.cart} />
+                  </label>
                 </StyledTableCell>
-                <StyledTableCell align="right">{user.genderId === 2 ? "Female" : "Male"}</StyledTableCell>
                 <StyledTableCell align="right" className="edit-user-icon">
                   <EditIcon />
                 </StyledTableCell>

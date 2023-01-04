@@ -1,19 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
+
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteUser } from "../../redux/actions/userAction";
+import UpdateUser from "../UpdateUser";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
-
 
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -34,58 +28,38 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function User() {
+export default function User({ user, handleDelete }) {
 
-  const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
 
-  const users = useSelector(state => state.allUsers);
 
-  const handleDelete = (id) => {
-    dispatch(deleteUser(id))
+  const toggle = () => {
+    setModal(!modal);
   }
 
   return (
-    <div className="user-roles">
-      <TableContainer component={Paper} className="user-table">
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Id</StyledTableCell>
-              <StyledTableCell align="right">Name</StyledTableCell>
-              <StyledTableCell align="right">Surname</StyledTableCell>
-              <StyledTableCell align="right">Gender</StyledTableCell>
-              <StyledTableCell align="right">Balance</StyledTableCell>
-              <StyledTableCell align="right">Cart</StyledTableCell>
-              <StyledTableCell align="right">Edit</StyledTableCell>
-              <StyledTableCell align="right">Delete</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users.map((user) => (
-              <StyledTableRow key={user.id}>
-                <StyledTableCell component="th" scope="row">
-                  {user.id}
-                </StyledTableCell>
-                <StyledTableCell align="right">{user.name}</StyledTableCell>
-                <StyledTableCell align="right">{user.surname}</StyledTableCell>
-                <StyledTableCell align="right">{user.genderId === 2 ? "Female" : "Male"}</StyledTableCell>
-                <StyledTableCell align="right">{user.balance}</StyledTableCell>
-                <StyledTableCell align="right">
-                  <label class="form-controlss">
-                    <input disabled type="checkbox" name="checkbox-checked" checked={user.cart} />
-                  </label>
-                </StyledTableCell>
-                <StyledTableCell align="right" className="edit-user-icon">
-                  <EditIcon />
-                </StyledTableCell>
-                <StyledTableCell align="right" className="delete-user-icon">
-                  <DeleteIcon onClick={() => handleDelete(user.id)} />
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <>
+      <StyledTableRow key={user.id}>
+        <StyledTableCell component="th" scope="row">
+          {user.id}
+        </StyledTableCell>
+        <StyledTableCell align="right">{user.name}</StyledTableCell>
+        <StyledTableCell align="right">{user.surname}</StyledTableCell>
+        <StyledTableCell align="right">{user.genderId === 2 ? "Female" : "Male"}</StyledTableCell>
+        <StyledTableCell align="right">{user.balance}</StyledTableCell>
+        <StyledTableCell align="right">
+          <label class="form-controlss">
+            <input disabled type="checkbox" name="checkbox-checked" checked={user.cart} />
+          </label>
+        </StyledTableCell>
+        <StyledTableCell align="right" className="edit-user-icon">
+          <EditIcon onClick={() => setModal(true)} />
+        </StyledTableCell>
+        <StyledTableCell align="right" className="delete-user-icon">
+          <DeleteIcon onClick={() => handleDelete(user.id)} />
+        </StyledTableCell>
+      </StyledTableRow>
+      <UpdateUser modal={modal} toggle={toggle} user={user} setModal={setModal} />
+    </>
   );
 }

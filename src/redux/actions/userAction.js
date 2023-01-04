@@ -43,3 +43,18 @@ export const deleteUser = (id) => async (dispatch) => {
   }
 };
 
+export const updateUser = (id, data) => async (dispatch) => {
+  try {
+    const res = await userService.editUser(id, data);
+
+    dispatch({
+      type: ActionTypes.UPDATE_USER,
+      payload: data,
+    });
+
+    return Promise.resolve(res.data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+

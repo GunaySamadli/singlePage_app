@@ -1,11 +1,11 @@
-import Table from "./components/Table";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UserTable from './components/Table/index';
 
 function App() {
   return (
     <div >
-      <Table />
+      <UserTable />
     </div>
   );
 }

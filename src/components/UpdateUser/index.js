@@ -4,28 +4,16 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch } from 'react-redux';
-import { createUser } from "../../redux/actions/userAction";
-import UserValidation from '../../Validations/UserValidation';
-import { v4 as uuid } from 'uuid';
+import { updateUser } from "../../redux/actions/userAction";
 
 
-const UserCreate = ({ modal, toggle, setModal }) => {
-
-    const unique_id = uuid();
+const UpdateUser = ({ modal, toggle, setModal, user }) => {
 
     const dispatch = useDispatch();
 
-    const [errors, setErrors] = useState({});
-
     const [customRole, setCustomRole] = useState();
 
-    const [data, setData] = useState({
-        id: unique_id.slice(0, 8),
-        name: "",
-        surname: "",
-        balance: 0,
-        date: new Date()
-    });
+    const [data, setData] = useState(user);
 
 
     const handleChange = (e) => {
@@ -42,38 +30,27 @@ const UserCreate = ({ modal, toggle, setModal }) => {
     }
 
 
-    const handleSave = (e) => {
-        e.preventDefault();
-        setErrors({});
-        let newErrors = UserValidation(data);
-        if (Object.keys(newErrors).length) {
-            setErrors(newErrors);
-        } else {
-            dispatch(createUser(data));
-            setModal(false);
-            setData('');
-        }
+    const handleSave = () => {
+        dispatch(updateUser(user.id, data));
+        setModal(false);
     }
 
     return (
         <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}>Create User</ModalHeader>
+            <ModalHeader toggle={toggle}>Update : {user.name}</ModalHeader>
             <ModalBody>
-                <Form >
+                <Form>
                     <FormGroup>
-                        <Input onChange={handleChange} type="text" name="name" id="name" placeholder='Enter your Name' />
-                        {errors.name && (<p className="error">{errors.name}</p>)}
+                        <Input onChange={handleChange} value={data.name} type="text" name="name" id="name" placeholder='Enter your Name' />
                     </FormGroup>
                     <FormGroup>
-                        <Input onChange={handleChange} type="text" name="surname" id="surname" placeholder='Enter your Surname' />
-                        {errors.name && (<p className="error">{errors.name}</p>)}
+                        <Input onChange={handleChange} value={data.surname} type="text" name="surname" id="surname" placeholder='Enter your Surname' />
                     </FormGroup>
                     <FormGroup>
-                        <Input onChange={handleChange} type="text" name="cart" id="cart" placeholder='Enter your Cart' />
+                        <Input onChange={handleChange} value={data.cart} type="text" name="cart" id="cart" placeholder='Enter your Cart' />
                     </FormGroup>
                     <FormGroup>
                         <Input onChange={handleChange} value={data.balance || ''} type="number" name="balance" id="balance" placeholder='Enter your Balance' />
-                        {errors.balance && (<p className="error">{errors.balance}</p>)}
                     </FormGroup>
                     <FormGroup>
                         <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
@@ -83,9 +60,8 @@ const UserCreate = ({ modal, toggle, setModal }) => {
                             <FormControlLabel onChange={handleChange} name="genderId"
                                 value="2" control={<Radio />} label="Female" />
                         </RadioGroup>
-                        {errors.genderId && (<p className="error">{errors.genderId}</p>)}
                     </FormGroup>
-                    <Button color="primary" onClick={handleSave}>Create</Button>{' '}
+                    <Button color="primary" onClick={handleSave}>Save</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </Form>
             </ModalBody>
@@ -93,5 +69,5 @@ const UserCreate = ({ modal, toggle, setModal }) => {
     );
 };
 
-export default UserCreate;
+export default UpdateUser;
 

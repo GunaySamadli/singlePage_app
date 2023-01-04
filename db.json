@@ -1,13 +1,13 @@
 {
   "users": [
     {
-      "id": "63b8be33",
-      "name": "Gunay",
-      "surname": "Semedli",
+      "id": "d5117cfa",
+      "name": "Vasif",
+      "surname": "Salehova",
       "balance": "34",
-      "date": "2023-01-04T07:41:25.740Z",
+      "date": "2023-01-04T07:50:20.977Z",
       "cart": "34w",
-      "genderId": 2
+      "genderId": 1
     }
   ],
   "gender": [

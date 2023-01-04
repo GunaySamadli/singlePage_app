@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createUser = exports.getAllUsers = void 0;
+exports.deleteUser = exports.createUser = exports.getAllUsers = void 0;
 
 var _service = require("../../Apis/Services/service");
 
@@ -79,3 +79,39 @@ var createUser = function createUser(user) {
 };
 
 exports.createUser = createUser;
+
+var deleteUser = function deleteUser(id) {
+  return function _callee3(dispatch) {
+    return regeneratorRuntime.async(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return regeneratorRuntime.awrap(_service.userService.deleteUser(id));
+
+          case 3:
+            dispatch({
+              type: _actionTypes.ActionTypes.DELETE_USER,
+              payload: {
+                id: id
+              }
+            });
+            _context3.next = 9;
+            break;
+
+          case 6:
+            _context3.prev = 6;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, null, null, [[0, 6]]);
+  };
+};
+
+exports.deleteUser = deleteUser;

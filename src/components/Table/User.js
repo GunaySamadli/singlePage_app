@@ -9,9 +9,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser } from "../../redux/actions/userAction";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
+
+
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
@@ -33,7 +36,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function User() {
 
-  const users = useSelector(state => state.allUsers)
+  const dispatch = useDispatch();
+
+  const users = useSelector(state => state.allUsers);
+
+  const handleDelete = (id) => {
+    dispatch(deleteUser(id))
+  }
 
   return (
     <div className="user-roles">
@@ -70,7 +79,7 @@ export default function User() {
                   <EditIcon />
                 </StyledTableCell>
                 <StyledTableCell align="right" className="delete-user-icon">
-                  <DeleteIcon />
+                  <DeleteIcon onClick={() => handleDelete(user.id)} />
                 </StyledTableCell>
               </StyledTableRow>
             ))}

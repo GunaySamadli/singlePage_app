@@ -29,3 +29,17 @@ export const createUser = (user) => async (dispatch) => {
     return Promise.reject(err);
   }
 };
+
+export const deleteUser = (id) => async (dispatch) => {
+  try {
+    await userService.deleteUser(id)
+
+    dispatch({
+      type: ActionTypes.DELETE_USER,
+      payload: { id },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+

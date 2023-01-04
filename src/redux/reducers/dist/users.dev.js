@@ -31,6 +31,12 @@ var userReducer = function userReducer() {
     case _actionTypes.ActionTypes.GET_USERS:
       return payload;
 
+    case _actionTypes.ActionTypes.DELETE_USER:
+      return state.filter(function (_ref2) {
+        var id = _ref2.id;
+        return id !== payload.id;
+      });
+
     default:
       return state;
   }
